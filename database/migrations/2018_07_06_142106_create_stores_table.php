@@ -15,13 +15,13 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre',80);
-            $table->string('asunto',80);
+            $table->string('nombre',150);
+            $table->string('asunto',150);
             $table->string('consecutivo',11);
             $table->string('fecha',20);
-            $table->string('radicado',80);
+            $table->string('radicado',80)->nullable();
             $table->string('unidad',80);
-            $table->string('file',80);
+            $table->string('file',150);
             $table->integer('Subserie_id')->unsigned();
             $table->foreign('Subserie_id')->references('id')->on('sub_series')->onDelete('cascade');
             $table->timestamps();

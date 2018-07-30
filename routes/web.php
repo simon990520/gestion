@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('bitacoraDependencias', 'BitacorasDependenciasController');
     Route::resource('store', 'StoreController');
     Route::resource('users', 'UserController');
+    Route::resource('transferencias', 'TransferenciasController');
 
 });
 

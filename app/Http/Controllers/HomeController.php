@@ -7,6 +7,7 @@ use App\Serie;
 use App\SubSeries;
 use App\Timeline;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -33,7 +34,7 @@ class HomeController extends Controller
         $Subseries = count(SubSeries::all()->toArray()) ;
         /*$timeline = Timeline::all()->toArray();*/
         $timeline = DB::table('timelines')->join('users','users.id', '=', 'timelines.users_id')->select('timelines.id','timelines.tabla','timelines.nombre','timelines.codigo','timelines.action','timelines.created_at','users.name')->get()->sortByDesc('created_at');
-        /*dd($timeline);*/
+        /*dd(Auth::user());*/
         return view('home', compact('dependencias', 'series','timeline','Subseries'));
     }
 }

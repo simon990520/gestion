@@ -12,16 +12,17 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-xs-2">
-                            <input name="nombre" type="text" class="form-control" placeholder="Nombre">
+                            <input name="nombre" type="text" class="form-control" placeholder="Nombre" required>
                         </div>
                         <div class="col-xs-4">
-                            <input name="asunto" type="text" class="form-control" placeholder="Asunto">
+                            <input name="asunto" type="text" class="form-control" placeholder="Asunto" required>
                         </div>
                         <div class="col-xs-2">
-                            <input name="consecutivo" type="text" class="form-control " placeholder="Folio" value="@if(isset($last)){{$last->consecutivo+1}} @else 1 @endif">
+                            <div  class="form-control "  >@if(isset($last)){{$last->consecutivo+1}} @else 1 @endif</div>
+                            <input name="consecutivo" type="hidden" class="form-control " placeholder="Folio" value="@if(isset($last)){{$last->consecutivo+1}} @else 1 @endif">
                         </div>
                         <div class="col-xs-2">
-                            <input name="fecha" type="date" class="form-control" placeholder="Fecha">
+                            <input name="fecha" type="date" class="form-control" placeholder="Fecha" required>
                         </div>
                         <div class="col-xs-2">
                             <input name="radicado" type="text" class="form-control" placeholder="Radicado">
@@ -30,12 +31,12 @@
                     <br>
                     <div class="row">
                         <div class="col-xs-8">
-                            <input name="unidad" type="text" class="form-control" placeholder="Lugar de consevación">
+                            <input name="unidad" type="text" class="form-control" placeholder="Lugar de consevación" required>
                             <input name="Subserie_id" type="hidden"  value="{{$post->id}}">
                         </div>
                         <div class="col-xs-2">
                             <label class="btn btn-success btn-file col-xs-12">
-                                Seleccione archivo <input name="file" type="file" style="display: none;">
+                                Seleccione archivo <input name="file" type="file" style="display: none;" required>
                             </label>
                         </div>
                         <div class="col-xs-2">
@@ -63,7 +64,7 @@
 
                                             <div class="mailbox-attachment-info">
                                                 <a href="{{asset('pdf/'.$post->file)}}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{$post->nombre}}.pdf</a>
-                                                <span class="mailbox-attachment-size">1,245 KB <a href="{{asset('pdf/'.$post->file)}}" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                                                <span class="mailbox-attachment-size">Folio {{$post->consecutivo}} <a href="{{asset('pdf/'.$post->file)}}" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
                                                 <a href="{{asset('pdf/'.$post->file)}}" class="btn btn-default btn-xs pull-right"><i class="fa fa-trash"></i></a>
                                                 <a href="{{asset('pdf/'.$post->file)}}" class="btn btn-default btn-xs pull-right"><i class="fa fa-refresh"></i></a>
                                                 </span>

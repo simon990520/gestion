@@ -18,7 +18,7 @@ class CreateSubSeriesTable extends Migration
             $table->integer('serie_id')->unsigned();
             $table->foreign('serie_id')->references('id')->on('series')->onDelete('cascade');
             $table->string('nombreSubSeries',100)->nullable();
-            $table->string('codigoSubSeries',11)->nullable();
+            $table->string('codigoSubSeries',30)->nullable();
             $table->string('originalSubSeries',11)->nullable();
             $table->string('copiaSubSeries',11)->nullable();
             $table->string('soporteSubSeries',11)->nullable();

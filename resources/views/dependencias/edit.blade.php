@@ -5,7 +5,7 @@
         <div class="row">.</div>
         <div class="row">
             <div class="col-md-12">
-                @if($data[0]->cdependencias == '0')
+                @if($data[0]->edependencias == '0')
                 <form method="post" action="{{action('DependenciasController@update', $id)}}">
                     {{csrf_field()}}
                     <input name="_method" type="hidden" value="PATCH">

@@ -18,7 +18,7 @@ class CreateSeriesTable extends Migration
             $table->integer('dependencias_id')->unsigned();
             $table->foreign('dependencias_id')->references('id')->on('dependencias')->onDelete('cascade');
             $table->string('nombreSeries',100)->nullable();
-            $table->string('codigoSeries',11)->nullable();
+            $table->string('codigoSeries',30)->nullable();
             $table->string('original',11)->nullable();
             $table->string('copia',11)->nullable();
             $table->string('soporte',11)->nullable();
@@ -30,6 +30,7 @@ class CreateSeriesTable extends Migration
             $table->string('digitalizacion',11)->nullable();
             $table->string('seleccion',11)->nullable();
             $table->string('eliminacion',11)->nullable();
+            $table->string('estado',11);
 
             $table->timestamps();
         });
