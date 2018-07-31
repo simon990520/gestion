@@ -141,6 +141,13 @@ class SeriesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $gestion = $request->get('gestion');
+        if ($gestion == '0'){
+            echo 'simon';
+            $estado = '2';
+        }else{
+            $estado = '1';
+        }
         $series = Serie::find($id);
         $series->dependencias_id = $request->get('dependencias_id');
         $series->nombreSeries = $request->get('nombreSeries');
@@ -156,6 +163,7 @@ class SeriesController extends Controller
         $series->digitalizacion = $request->get('digitalizacion');
         $series->seleccion = $request->get('seleccion');
         $series->eliminacion = $request->get('eliminacion');
+        $series->estado = $estado;
         $series->save();
 
         $bitacora = new Bitacora_series([
