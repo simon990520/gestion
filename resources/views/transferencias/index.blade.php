@@ -31,10 +31,10 @@
                             <td>{{$post->codigoSeries}}</td>
                             <td>{{$post->gestion}}</td>
                             <td>{{$post->central}}</td>
-                            @if($post->estado != '2')
+                            @if($post->estado == '3')
                                 <td><span class="label label-success">Transferido</span></td>
 
-                            @elseif($post->estado = '3')
+                            @else()
                             <td>
                                 <form  method="post" action="{{action('TransferenciasController@update', $post->id)}}">
                                     {{csrf_field()}}

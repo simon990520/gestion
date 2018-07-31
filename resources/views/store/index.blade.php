@@ -22,7 +22,7 @@
                             <input name="consecutivo" type="hidden" class="form-control " placeholder="Folio" value="@if(isset($last)){{$last->consecutivo+1}} @else 1 @endif">
                         </div>
                         <div class="col-xs-2">
-                            <input name="fecha" type="date" class="form-control" placeholder="Fecha" required>
+                            <input name="fecha" type="date" class="form-control" placeholder="Fecha"  required>
                         </div>
                         <div class="col-xs-2">
                             <input name="radicado" type="text" class="form-control" placeholder="Radicado">

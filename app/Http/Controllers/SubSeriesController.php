@@ -7,6 +7,7 @@ use App\Serie;
 use App\Store;
 use App\SubSeries;
 use App\Timeline;
+use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -106,7 +107,9 @@ class SubSeriesController extends Controller
         $post = SubSeries::find($id);
         $data = DB::table('stores')->select('*')->where('Subserie_id', '=', $id)->get();
         $last = $data->last();
-        return view('store.index', compact('post','data', 'last'));
+        $now = new \DateTime();
+
+        return view('store.index', compact('post','data', 'last','now'));
     }
 
     /**

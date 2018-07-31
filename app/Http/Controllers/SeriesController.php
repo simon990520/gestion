@@ -19,7 +19,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->where('estado','=','1')->get();
+        $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->where('estado','!=','3')->get();
             /*dd($series);*/
         $dependencias = Dependencias::all()->toArray();
         /*$series = Serie::all()->toArray();*/
@@ -47,6 +47,13 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
+        $gestion = $request->get('gestion');
+        if ($gestion == '0'){
+           echo 'simon';
+           $estado = '2';
+        }else{
+            $estado = '1';
+        }
         $series = new Serie([
             'dependencias_id' => $request->get('dependencias_id'),
             'nombreSeries' => $request->get('nombreSeries'),
@@ -62,7 +69,7 @@ class SeriesController extends Controller
             'digitalizacion' => $request->get('digitalizacion'),
             'seleccion' => $request->get('seleccion'),
             'eliminacion' => $request->get('eliminacion'),
-            'estado' => '1',
+            'estado' => $estado,
         ]);
         $series->save();
         $bitacora = new Bitacora_series([
