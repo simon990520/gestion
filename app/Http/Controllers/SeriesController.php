@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bitacora_series;
 use App\Dependencias;
+use App\Http\Requests\SeriesRequest;
 use App\Serie;
 use App\Timeline;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class SeriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeriesRequest $request)
     {
         $gestion = $request->get('gestion');
         if ($gestion == '0'){

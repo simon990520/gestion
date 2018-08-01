@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container-fluid">
+        @if(count($errors)>0)
+            <div class="alert alert-danger animate" role="alert">El nombre de la serie ya existe</div>
+            @endif()
         <br>
                 <form  method="post" action="{{url('series')}}">
                     {{csrf_field()}}

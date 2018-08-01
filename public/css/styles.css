@@ -7,3 +7,18 @@
 .pdf{
     background: #fff !important;
 }
+.animate{
+    animation-name: animate;
+    animation-duration: 2ms;
+    animation-direction: normal;
+}
+@keyframes animate {
+    from{
+        position: absolute;
+        top: 10%;
+    }
+    to{
+        position: absolute;
+        top: -10%;
+    }
+}
