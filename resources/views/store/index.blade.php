@@ -83,7 +83,7 @@
                                     <td>{{$post->unidad}}</td>
                                     <td><a href="{{asset('pdf/'.$post->file)}} "  target="_blank" class="btn btn-primary"> <i class="fa  fa-folder-open"></i></a></td>
 
-                                    <td><form action="{{action('SubSeriesController@destroy', $post->id)}}" method="post">
+                                    <td><form action="{{action('StoreController@destroy', $post->id)}}" method="post">
                                             {{csrf_field()}}
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>

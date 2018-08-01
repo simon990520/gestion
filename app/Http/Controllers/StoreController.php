@@ -113,6 +113,11 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $series = Store::find($id);
+        $series->delete();
+
+        return redirect()->action(
+            'SubSeriesController@show', $series->Subserie_id
+        );
     }
 }
