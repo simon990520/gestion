@@ -108,7 +108,7 @@ class SubSeriesController extends Controller
         $data = DB::table('stores')->select('*')->where('Subserie_id', '=', $id)->get();
         $last = $data->last();
         $now = new \DateTime();
-
+/*dd($post);*/
         return view('store.index', compact('post','data', 'last','now'));
     }
 

@@ -59,9 +59,9 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>SubSerie</th>
                                 <th>Nombre</th>
                                 <th>asunto</th>
+                                <th>folio</th>
                                 <th>fecha</th>
                                 <th>radicado</th>
                                 <th>unidad</th>
@@ -89,7 +89,7 @@
                                             <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>
                                         </form></td>
                                     <td><a href="" download="{{asset('pdf/'.$post->file)}}" class="btn btn-success"> <i class="fa  fa-folder-open"></i></a></td>
-                                    <td><a href="{{action('SubSeriesController@edit', $post->id)}}" class="btn btn-warning"> <i class="fa  fa-refresh"></i></a></td>
+                                    <td><a href="{{action('StoreController@edit', $post->id)}}" class="btn btn-warning"> <i class="fa  fa-refresh"></i></a></td>
 
                                 </tr>
                             @endforeach
@@ -97,9 +97,9 @@
                             <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>SubSerie</th>
                                 <th>Nombre</th>
                                 <th>asunto</th>
+                                <th>folio</th>
                                 <th>fecha</th>
                                 <th>radicado</th>
                                 <th>unidad</th>
