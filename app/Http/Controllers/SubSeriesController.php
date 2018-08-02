@@ -21,7 +21,7 @@ class SubSeriesController extends Controller
      */
     public function index()
     {
-        $sub_series = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries','series.nombreSeries')->whereNull('sub_series.deleted_at')->whereNull('series.deleted_at')->get();
+        $sub_series = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries','sub_series.estado','series.nombreSeries')->whereNull('sub_series.deleted_at')->whereNull('series.deleted_at')->where('sub_series.estado','=','1')->get();
         $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->get();
        /*dd($sub_series);*/
         return view('sub-series.index', compact('series','sub_series'));
@@ -45,6 +45,14 @@ class SubSeriesController extends Controller
      */
     public function store(Request $request)
     {
+        $gestion = $request->get('gestionSubSeries');
+        if ($gestion == '0'){
+            echo 'simon';
+            $estado = '2';
+        }else{
+            $estado = '1';
+        }
+
         $sub_series = new SubSeries([
             'serie_id' => $request->get('serie_id'),
             'nombreSubSeries' => $request->get('nombreSubSeries'),
@@ -60,8 +68,9 @@ class SubSeriesController extends Controller
             'digitalizacionSubSeries' => $request->get('digitalizacionSubSeries'),
             'seleccionSubSeries' => $request->get('seleccionSubSeries'),
             'eliminacionSubSeries' => $request->get('eliminacionSubSeries'),
+            'estado' => $estado,
         ]);
-        /*dd($sub_series);*/
+
         $sub_series->save();
         $bitacora = new BitacoraSubSeries([
             'Subserie_id' => $sub_series->id,
@@ -120,10 +129,9 @@ class SubSeriesController extends Controller
      */
     public function edit($id)
     {
-        $Subseriess = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries','series.nombreSeries','series.codigoSeries')->where('series.deleted_at', '=', null)->get();
+        $Subseriess = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries','sub_series.estado','series.nombreSeries','series.codigoSeries')->where('series.deleted_at', '=', null)->where('sub_series.estado','=','1')->get();
         $Subseries = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries', 'series.nombreSeries','series.codigoSeries','series.id as seid')->where('sub_series.id', '=', $id)->get();
         $series = Serie::all()->toArray();
-        /*dd($series);*/
         return view('sub-series.edit', compact('Subseries','id','series','Subseriess'));
     }
 
@@ -136,6 +144,13 @@ class SubSeriesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $gestion = $request->get('gestionSubSeries');
+        if ($gestion == '0'){
+            echo 'simon';
+            $estado = '2';
+        }else{
+            $estado = '1';
+        }
 
         $Subseries = SubSeries::find($id);
         $Subseries->serie_id = $request->get('serie_id');
@@ -152,6 +167,7 @@ class SubSeriesController extends Controller
         $Subseries->digitalizacionSubSeries = $request->get('digitalizacionSubSeries');
         $Subseries->seleccionSubSeries = $request->get('seleccionSubSeries');
         $Subseries->eliminacionSubSeries = $request->get('eliminacionSubSeries');
+        $Subseries->estado = $estado;
         $Subseries->save();
 
         $bitacora = new BitacoraSubSeries([

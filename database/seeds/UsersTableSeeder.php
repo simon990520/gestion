@@ -3,6 +3,7 @@
 use App\Dependencias;
 use App\Permisos;
 use App\Serie;
+use App\SubSeries;
 use App\User;
 use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Database\Seeder;
@@ -40,7 +41,7 @@ class UsersTableSeeder extends Seeder
             'dusuarios' => '0',
             'user_id' => '1'
         ]);
-        Dependencias::create([
+        /*Dependencias::create([
             'nombreDependencias' => 'Despacho subdirector',
             'codigoDependencias' => '1060',
         ]);
@@ -112,5 +113,22 @@ class UsersTableSeeder extends Seeder
             'eliminacion' =>'1',
             'estado' => '2',
         ]);
+        SubSeries::create([
+            'serie_id' =>'1',
+            'nombreSubSeries' =>'peticiones, quejas y reclamos',
+            'codigoSubSeries' =>'162',
+            'originalSubSeries' =>'',
+            'copiaSubSeries' =>'1',
+            'soporteSubSeries' =>'',
+            'gestionSubSeries' =>'0',
+            'centralSubSeries' =>'5',
+            'ctfisicoSubSeries' =>'',
+            'ctelectronicoSubSeries' =>'1',
+            'microfilmacionSubSeries' =>'1',
+            'digitalizacionSubSeries' =>'',
+            'seleccionSubSeries' =>'',
+            'eliminacionSubSeries' =>'1',
+            'estado' => '1',
+        ]);*/
     }
 }

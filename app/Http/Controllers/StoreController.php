@@ -102,7 +102,11 @@ class StoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $series = SubSeries::find($id);
+        /*dd($series);*/
+        $series->estado = '3';
+        $series->save();
+        return redirect('/transferencias');
     }
 
     /**

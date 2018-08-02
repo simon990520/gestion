@@ -30,6 +30,7 @@ class CreateSubSeriesTable extends Migration
             $table->string('digitalizacionSubSeries',11)->nullable();
             $table->string('seleccionSubSeries',11)->nullable();
             $table->string('eliminacionSubSeries',11)->nullable();
+            $table->string('estado',11);
             $table->timestamps();
             $table->softDeletes();
         });

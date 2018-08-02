@@ -432,8 +432,12 @@
                         <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
                     </ul>
                 </li>--}}
-                <?php use Illuminate\Support\Facades\DB;$content = DB::table('series')->select('*')->where('estado','=','2')->get(); ?>
-                <li><a href="{{ url('transferencias') }}"><i class="fa fa-book"></i> <span>Transferencias @if(count($content)>=1)<span class="label label-danger">{{count($content)  }}</span> @else @endif</span></a></li>
+                <?php use Illuminate\Support\Facades\DB;
+                $content = DB::table('series')->select('*')->where('estado','=','2')->get();
+                $content2 = DB::table('sub_series')->select('*')->where('estado','=','2')->get();
+                $total =count($content) + count($content2) ;
+                ?>
+                <li><a href="{{ url('transferencias') }}"><i class="fa fa-book"></i> <span>Transferencias @if(count($content)>=1 || count($content2)>=1)<span class="label label-danger">{{$total  }}</span> @else @endif</span></a></li>
                 <li class="header">BITACORAS</li>
                 <li><a href={{ url('bitacoraDependencias') }}><i class="fa fa-circle-o text-red"></i> <span>Bitacora Dependencias</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Bitacora Series</span></a></li>
