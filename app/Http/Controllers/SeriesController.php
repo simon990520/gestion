@@ -126,7 +126,7 @@ class SeriesController extends Controller
      */
     public function edit($id)
     {
-        $seriess = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->where('dependencias.deleted_at', '=', null)->where('estado','=','1')->get();
+        $seriess = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->where('dependencias.deleted_at', '=', null)->where('estado','!=','3')->get();
         $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias','dependencias.id as depeid')->where('series.id', '=', $id)->get();
         $dependencias = Dependencias::all()->toArray();
         /*dd($series);*/
