@@ -87,7 +87,7 @@
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>
                                         </form></td>
-                                    <td><a href="" download="{{asset('pdf/'.$post->file)}}" class="btn btn-success"> <i class="fa  fa-folder-open"></i></a></td>
+                                    <td><a href="{{asset('pdf/'.$post->file)}}" download="{{asset('pdf/'.$post->file)}}" class="btn btn-success"> <i class="fa  fa-folder-open"></i></a></td>
 
                                 </tr>
                             @endforeach
