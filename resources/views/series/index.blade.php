@@ -112,85 +112,91 @@
                         </div>
                     </div>
                 </form>
-                <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
-                    <div class="box-header">
-                        <h3 class="box-title">Listado de Series</h3>
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
+                            <div class="box-header">
+                                <h3 class="box-title">Listado de Series</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body col-md-12 col-sm-12 col-xl-12">
+                                <table id="example1" class="table table-bordered table-striped col-md-12 col-sm-12 col-xl-12">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Dependencia</th>
+                                        <th>Nombre</th>
+                                        <th>Codigo</th>
+                                        <th>Original</th>
+                                        <th>Copia</th>
+                                        <th> <small> Soporte electronico</small></th>
+                                        <th> <small>Archivo gestión</small></th>
+                                        <th><small>Archivo central</small></th>
+                                        <th>SF</th>
+                                        <th>SE</th>
+                                        <th>M</th>
+                                        <th>D</th>
+                                        <th>S</th>
+                                        <th>E</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($series as $post)
+                                        <tr>
+                                            <td>{{$post->id}}</td>
+                                            <td>{{$post->nombreDependencias}}</td>
+                                            <td>{{$post->nombreSeries}}</td>
+                                            <td>{{$post->codigoSeries}}</td>
+                                            <td> @if($post->original==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>@if($post->copia==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>@if($post->soporte==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>{{$post->gestion}}</td>
+                                            <td>{{$post->central}}</td>
+                                            <td>@if($post->ctfisico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>@if($post->ctelectronico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>@if($post->microfilmacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>@if($post->digitalizacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>@if($post->seleccion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td>@if($post->eliminacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                                            <td><a href="{{action('SeriesController@edit', $post->id)}}" class="btn btn-warning"> <i class="fa  fa-refresh"></i></a></td>
+                                            <td><form action="{{action('SeriesController@destroy', $post->id)}}" method="post">
+                                                    {{csrf_field()}}
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>
+                                                </form></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Dependencia</th>
+                                        <th>Nombre</th>
+                                        <th>Codigo</th>
+                                        <th>Original</th>
+                                        <th>Copia</th>
+                                        <th> <small> Soporte electronico</small></th>
+                                        <th> <small>Archivo gestión</small></th>
+                                        <th><small>Archivo central</small></th>
+                                        <th>SF</th>
+                                        <th>SE</th>
+                                        <th>M</th>
+                                        <th>D</th>
+                                        <th>S</th>
+                                        <th>E</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body col-md-12">
-                        <table id="example1" class="table table-bordered table-striped ">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Dependencia</th>
-                                <th>Nombre</th>
-                                <th>Codigo</th>
-                                <th>Original</th>
-                                <th>Copia</th>
-                                <th> <small> Soporte electronico</small></th>
-                                <th> <small>Archivo gestión</small></th>
-                                <th><small>Archivo central</small></th>
-                                <th>SF</th>
-                                <th>SE</th>
-                                <th>M</th>
-                                <th>D</th>
-                                <th>S</th>
-                                <th>E</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($series as $post)
-                                <tr>
-                                    <td>{{$post->id}}</td>
-                                    <td>{{$post->nombreDependencias}}</td>
-                                    <td>{{$post->nombreSeries}}</td>
-                                    <td>{{$post->codigoSeries}}</td>
-                                    <td> @if($post->original==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>@if($post->copia==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>@if($post->soporte==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>{{$post->gestion}}</td>
-                                    <td>{{$post->central}}</td>
-                                    <td>@if($post->ctfisico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>@if($post->ctelectronico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>@if($post->microfilmacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>@if($post->digitalizacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>@if($post->seleccion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td>@if($post->eliminacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                    <td><a href="{{action('SeriesController@edit', $post->id)}}" class="btn btn-warning"> <i class="fa  fa-refresh"></i></a></td>
-                                    <td><form action="{{action('SeriesController@destroy', $post->id)}}" method="post">
-                                            {{csrf_field()}}
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>
-                                        </form></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Dependencia</th>
-                                <th>Nombre</th>
-                                <th>Codigo</th>
-                                <th>Original</th>
-                                <th>Copia</th>
-                                <th> <small> Soporte electronico</small></th>
-                                <th> <small>Archivo gestión</small></th>
-                                <th><small>Archivo central</small></th>
-                                <th>SF</th>
-                                <th>SE</th>
-                                <th>M</th>
-                                <th>D</th>
-                                <th>S</th>
-                                <th>E</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
                 </div>
+            </section>
+    </div>
     </div>
 @endsection

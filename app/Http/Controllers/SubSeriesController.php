@@ -47,7 +47,6 @@ class SubSeriesController extends Controller
     {
         $gestion = $request->get('gestionSubSeries');
         if ($gestion == '0'){
-            echo 'simon';
             $estado = '2';
         }else{
             $estado = '1';
@@ -146,7 +145,6 @@ class SubSeriesController extends Controller
     {
         $gestion = $request->get('gestionSubSeries');
         if ($gestion == '0'){
-            echo 'simon';
             $estado = '2';
         }else{
             $estado = '1';

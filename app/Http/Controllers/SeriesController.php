@@ -50,7 +50,6 @@ class SeriesController extends Controller
     {
         $gestion = $request->get('gestion');
         if ($gestion == '0'){
-           echo 'simon';
            $estado = '2';
         }else{
             $estado = '1';
@@ -144,7 +143,6 @@ class SeriesController extends Controller
     {
         $gestion = $request->get('gestion');
         if ($gestion == '0'){
-            echo 'simon';
             $estado = '2';
         }else{
             $estado = '1';
