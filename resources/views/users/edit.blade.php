@@ -1,9 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if($data->eusuarios  = '0')
+    @else
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">ERROR <p class="bg-red">401</p> PERMISO DENEGADO</h1>
+            </div>
+        </div>
+    @endif
+    @if($data->eusuarios  = '0')
     <div class="container">
         <div class="row justify-content-center">
             <div class="row">.</div>
+            @if($data[0]->nusuarios  = '0')
             <form method="post" action="{{action('UserController@update', $datos[0]->id)}}">
                 {{csrf_field()}}
                 <input name="_method" type="hidden" value="PATCH">
@@ -121,6 +131,7 @@
                     <!-- /.box-body -->
                 </div>
             </form>
+            @endif
             <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
                 <div class="box-header">
                     <h3 class="box-title">Listado de Series</h3>
@@ -178,4 +189,5 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection

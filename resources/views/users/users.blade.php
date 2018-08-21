@@ -1,9 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if($data->nusuarios  = '0')
+        @else
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">ERROR <p class="bg-red">401</p> PERMISO DENEGADO</h1>
+            </div>
+        </div>
+    @endif
+    @if($data->nusuarios  = '0')
     <div class="container">
         <div class="row justify-content-center">
             <div class="row">.</div>
+            @if($data[0]->nusuarios  = '0')
             <form method="post" action="{{url('users')}}">
                 {{csrf_field()}}
                 @csrf
@@ -121,6 +131,7 @@
                     <!-- /.box-body -->
                 </div>
             </form>
+            @endif
             <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
                 <div class="box-header">
                     <h3 class="box-title">Listado de Series</h3>
@@ -137,8 +148,12 @@
                             <th>Series</th>
                             <th>Subseries</th>
                             <th>Ususarios</th>
+                            @if($data->eusuarios  = '0')
                             <th>Editar</th>
+                            @endif
+                            @if($data->dusuarios  = '0')
                             <th>Eliminar</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -151,12 +166,16 @@
                                 <td>@if($data->nseries != '0')<span class="label label-danger"><i class="fa fa-ban"></i></span>@else <span class="label label-success"><i class="fa fa-check"></i></span> @endif</td>
                                 <td>@if($data->nsubseries != '0')<span class="label label-danger"><i class="fa fa-ban"></i></span>@else <span class="label label-success"><i class="fa fa-check"></i></span> @endif</td>
                                 <td>@if($data->nusuarios  != '0')<span class="label label-danger"><i class="fa fa-ban"></i></span>@else <span class="label label-success"><i class="fa fa-check"></i></span> @endif</td>
+                                @if($data->eusuarios  = '0')
                                 <td><a href="{{action('UserController@edit', $data->id)}}" class="btn btn-warning"> <i class="fa  fa-refresh"></i></a></td>
+                                @endif
+                                @if($data->dusuarios  = '0')
                                 <td><form action="{{action('UserController@destroy', $data->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>
                                     </form></td>
+                                    @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -169,8 +188,12 @@
                             <th>Series</th>
                             <th>Subseries</th>
                             <th>Ususarios</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
+                            @if($data->eusuarios  = '0')
+                                <th>Editar</th>
+                            @endif
+                            @if($data->dusuarios  = '0')
+                                <th>Eliminar</th>
+                            @endif
                         </tr>
                         </tfoot>
                     </table>
@@ -178,4 +201,5 @@
         </div>
     </div>
     </div>
+    @endif
 @endsection
