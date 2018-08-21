@@ -21,8 +21,10 @@ class UserController extends Controller
     public function index()
     {
         $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->get();
+        $permisos = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
+
         /*dd($data);*/
-        return view('users.users', compact('data'));
+        return view('users.users', compact('data','permisos'));
     }
 
     /**
@@ -104,7 +106,9 @@ class UserController extends Controller
         $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->get();
         $datos = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('permisos.id','users.name','users.email','permisos.ndependencias','permisos.cdependencias','permisos.edependencias','permisos.ddependencias','permisos.nseries','permisos.cseries','permisos.eseries','permisos.dseries','permisos.nsubseries','permisos.csubseries','permisos.esubseries','permisos.dsubseries','permisos.nusuarios','permisos.cusuarios','permisos.eusuarios','permisos.dusuarios','users.id as pid')->where('user_id','=',$id)->get();
         /*dd($datos);*/
-        return view('users.edit', compact('data','datos'));
+        $permisos = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
+
+        return view('users.edit', compact('data','datos','permisos'));
     }
 
     /**
