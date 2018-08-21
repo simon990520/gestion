@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::group(['middleware' => 'auth'], function() {
 
 //Roles
@@ -49,9 +50,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('bitacoraDependencias', 'BitacoraDependenciasController');
     Route::resource('sub-series', 'SubSeriesController');
     Route::resource('bitacoraDependencias', 'BitacorasDependenciasController');
+    Route::resource('bitacoraSeries', 'BitacoraSerieController');
+    Route::resource('bitacoraSubSeries', 'BitacoraSubController');
     Route::resource('store', 'StoreController');
     Route::resource('users', 'UserController');
     Route::resource('transferencias', 'TransferenciasController');
+
+
+    Route::get('/401', function () {
+        return view('error.401');
+    });
 
 });
 

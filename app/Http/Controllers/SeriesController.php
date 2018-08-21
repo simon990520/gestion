@@ -125,11 +125,12 @@ class SeriesController extends Controller
      */
     public function edit($id)
     {
-        $seriess = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->where('dependencias.deleted_at', '=', null)->where('estado','!=','3')->get();
+        $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
+        $seriess = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->where('estado','!=','3')->get();
         $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias','dependencias.id as depeid')->where('series.id', '=', $id)->get();
         $dependencias = Dependencias::all()->toArray();
-        /*dd($series);*/
-        return view('series.edit', compact('series','id','dependencias','seriess'));
+        /*dd($data);*/
+        return view('series.edit', compact('series','id','dependencias','seriess','data'));
     }
 
     /**
@@ -233,7 +234,7 @@ class SeriesController extends Controller
             'tabla' => 'serie',
             'nombre' => $series->nombreSeries,
             'codigo' => $series->codigoSeries,
-            'action' => 'create',
+            'action' => 'delete',
             'users_id' => Auth::user()->id
         ]);
         $timeline->save();

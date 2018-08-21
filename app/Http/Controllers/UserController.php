@@ -116,14 +116,33 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $permisos = User::find($id);
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+
+        $permisos = Permisos::find($id);
         $permisos->ndependencias = $request->get('ndependencias');
         $permisos->cdependencias = $request->get('cdependencias');
+        $permisos->edependencias = $request->get('edependencias');
+        $permisos->ddependencias = $request->get('ddependencias');
+        $permisos->nseries = $request->get('nseries');
+        $permisos->cseries = $request->get('cseries');
+        $permisos->eseries = $request->get('eseries');
+        $permisos->dseries = $request->get('dseries');
+        $permisos->nsubseries = $request->get('nsubseries');
+        $permisos->csubseries = $request->get('csubseries');
+        $permisos->esubseries = $request->get('esubseries');
+        $permisos->dsubseries = $request->get('dsubseries');
+        $permisos->nusuarios = $request->get('nusuarios');
+        $permisos->cusuarios = $request->get('cusuarios');
+        $permisos->eusuarios = $request->get('eusuarios');
+        $permisos->dusuarios = $request->get('dusuarios');
+        $permisos->user_id = $user->id;
         $permisos->save();
 
-        $permisos =
-        $permisos->name = $request->get('name');
-        return redirect('/crud');
+        return redirect('/users');
     }
 
     /**
@@ -134,6 +153,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permisos = Permisos::find($id);
+        $permisos->delete();
+
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('/users');
     }
 }

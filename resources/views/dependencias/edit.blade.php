@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
+    {{--// denegacion de permisis--}}
+    @if($data[0]->edependencias == null)
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">ERROR <p class="bg-red">401</p> PERMISO DENEGADO</h1>
+            </div>
+        </div>
+    @endif
+    {{--fin de la denegacion--}}
     <div class="container">
         <div class="row">.</div>
         <div class="row">

@@ -342,6 +342,11 @@
             </form>
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
+            <?php
+            use Illuminate\Support\Facades\Auth;
+            use Illuminate\Support\Facades\DB;
+            $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
+            ?>
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="active  menu-open">
@@ -351,7 +356,7 @@
             </span>
                     </a>
                 </li>
-
+                @if($data[0]->ndependencias == '0')
                 <li class="">
                     <a href="{{ url('dependencias') }}">
                         <i class="fa fa-tags"></i>
@@ -367,6 +372,8 @@
                         <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
                     </ul>
                 </li>
+                @endif
+                @if($data[0]->nseries == '0')
                 <li class="">
                     <a href="{{ url('series') }}">
                         <i class="fa fa-laptop"></i>
@@ -384,6 +391,8 @@
                         <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
                     </ul>
                 </li>
+                @endif
+                @if($data[0]->nsubseries == '0')
                 <li class="">
                     <a href="{{ url('sub-series') }}">
                         <i class="fa fa-edit"></i> <span>Sub-series</span>
@@ -397,12 +406,15 @@
                         <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
                     </ul>
                 </li>
+                @endif
+                @if($data[0]->nusuarios == '0')
                 <li class="">
                     <a href="{{ url('users') }}">
                         <i class="fa fa-laptop"></i>
                         <span>Usuarios</span>
                         <span class="pull-right-container">
               <i class=""></i>
+                            @endif
             </span>
                     </a>
                     <ul class="treeview-menu">
@@ -432,7 +444,7 @@
                         <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
                     </ul>
                 </li>--}}
-                <?php use Illuminate\Support\Facades\DB;
+                <?php
                 $content = DB::table('series')->select('*')->where('estado','=','2')->get();
                 $content2 = DB::table('sub_series')->select('*')->where('estado','=','2')->get();
                 $total =count($content) + count($content2) ;
@@ -440,8 +452,8 @@
                 <li><a href="{{ url('transferencias') }}"><i class="fa fa-book"></i> <span>Transferencias @if(count($content)>=1 || count($content2)>=1)<span class="label label-danger">{{$total  }}</span> @else @endif</span></a></li>
                 <li class="header">BITACORAS</li>
                 <li><a href={{ url('bitacoraDependencias') }}><i class="fa fa-circle-o text-red"></i> <span>Bitacora Dependencias</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Bitacora Series</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Bitacora Subseries</span></a></li>
+                <li><a href="{{ url('bitacoraSeries') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Bitacora Series</span></a></li>
+                <li><a href="{{ url('bitacoraSubSeries') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Bitacora Subseries</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->

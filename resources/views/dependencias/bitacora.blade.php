@@ -38,10 +38,10 @@
                                     <td>{{$post->codigoDependencias}}</td>
                                     <td>{{$post->name}}</td>
                                     <td>
-                                        @if($post->action == 'create')<span class="label label-success">Creado </span>@endif
-                                            @if($post->action == 'update')<span class="label label-warning">Actualizado </span>@endif
-                                                @if($post->action == 'delete')<span class="label label-danger">Eliminado </span>@endif
-                                                @if($post->action == 'recover')<span class="label label-info">Recuperado </span>@endif
+                                        @if($post->action == 'create')<input type="hidden" name="eliminar" value="1"><span class="label label-success">Creado </span>@endif
+                                            @if($post->action == 'update')<input type="hidden" name="eliminar" value="1"><span class="label label-warning">Actualizado </span>@endif
+                                                @if($post->action == 'delete')<input type="hidden" name="eliminar" value="0"><span class="label label-danger">Eliminado </span>@endif
+                                                @if($post->action == 'recover')<input type="hidden" name="eliminar" value="1"><span class="label label-info">Recuperado </span>@endif
                                     </td>
                                     <td>{{$post->created_at}}</td>
                                     <td> <button class="btn btn-primary"><i class="fa  fa-recycle"></i></button> </td>

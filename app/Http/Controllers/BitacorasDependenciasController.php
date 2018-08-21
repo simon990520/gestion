@@ -77,19 +77,11 @@ class BitacorasDependenciasController extends Controller
     public function update(Request $request, $bitacoraDependencias_id)
     {
         $dependencias = Dependencias::find($bitacoraDependencias_id);
-        /*$dependencias->action = $request->get('action');*/
-        dd($dependencias);
-        if ($request->get('action') == 'delete') {
-            /*$dependencias = Dependencias::withTrashed()->where('id', '=', $bitacoraDependencias_id)->first();
-            $dependencias->restore();*/
-            echo "simon";
-        }else{
+        if ($dependencias != null){
 
-            $dependencias = Dependencias::find($bitacoraDependencias_id);
-           /* dd($dependencias);*/
-             $dependencias->nombreDependencias = $request->get('nombreDependencias');
-             $dependencias->codigoDependencias = $request->get('codigoDependencias');
-             $dependencias->deleted_at = null;
+            $dependencias->nombreDependencias = $request->get('nombreDependencias');
+            $dependencias->codigoDependencias = $request->get('codigoDependencias');
+            $dependencias->deleted_at = null;
             $dependencias->save();
 
             $bitacora = new BitacoraDependencias([
@@ -108,10 +100,37 @@ class BitacorasDependenciasController extends Controller
                 'users_id' => Auth::user()->id
             ]);
             $timeline->save();
+
+
+
+            return redirect('/bitacoraDependencias');
+        }else{
+            /*$dependencias = Dependencias::find($bitacoraDependencias_id);*/
+             Dependencias::withTrashed()->find($bitacoraDependencias_id)->restore();
+            $dependencias = Dependencias::find($bitacoraDependencias_id);
+
+            $bitacora = new BitacoraDependencias([
+                'bitacoraDependencias_id' => $dependencias->id,
+                'nombreDependencias' => $dependencias->nombreDependencias,
+                'codigoDependencias' => $dependencias->codigoDependencias,
+                'action' => 'recover',
+                'users_id' => Auth::user()->id
+            ]);
+            $bitacora->save();
+            $timeline = new Timeline([
+                'tabla' => 'dependencia',
+                'nombre' => $dependencias->nombreDependencias,
+                'codigo' => $dependencias->codigoDependencias,
+                'action' => 'recover',
+                'users_id' => Auth::user()->id
+            ]);
+            $timeline->save();
+            return redirect('/bitacoraDependencias');
+
         }
+            /*$dependencias = Dependencias::find($bitacoraDependencias_id);
 
-
-        return redirect('/bitacoraDependencias');
+             */
     }
 
     /**

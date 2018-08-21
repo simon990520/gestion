@@ -1,8 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+    {{--// denegacion de permisis--}}
+    @if($data[0]->nsubseries == null)
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">ERROR <p class="bg-red">401</p> PERMISO DENEGADO</h1>
+            </div>
+        </div>
+    @endif
+    {{--fin de la denegacion--}}
     <div class="container-fluid">
         <br>
+        @if($data[0]->csubseries == '0')
         <form  method="post" action="{{url('sub-series')}}">
             {{csrf_field()}}
             <div class="box box-danger">
@@ -109,6 +119,8 @@
                 </div>
             </div>
         </form>
+        @endif
+        @if($data[0]->nsubseries == '0')
         <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
             <div class="box-header">
                 <h3 class="box-title">Listado de Sub-series</h3>
@@ -133,8 +145,12 @@
                         <th>D</th>
                         <th>S</th>
                         <th>E</th>
+                        @if($data[0]->esubseries == '0')
                         <th>Editar</th>
+                        @endif
+                        @if($data[0]->dsubseries == '0')
                         <th>Eliminar</th>
+                        @endif
                         <th>Abrir</th>
                     </tr>
                     </thead>
@@ -156,13 +172,17 @@
                             <td>@if($post->digitalizacionSubSeries==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                             <td>@if($post->seleccionSubSeries==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                             <td>@if($post->eliminacionSubSeries==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
+                            @if($data[0]->esubseries == '0')
                             <td><a href="{{action('SubSeriesController@edit', $post->id)}}" class="btn btn-warning"> <i class="fa  fa-refresh"></i></a></td>
-                            <td><form action="{{action('SubSeriesController@destroy', $post->id)}}" method="post">
+                            @endif
+                            @if($data[0]->dsubseries == '0')
+                                <td><form action="{{action('SubSeriesController@destroy', $post->id)}}" method="post">
                                     {{csrf_field()}}
                                     <input name="_method" type="hidden" value="DELETE">
                                     <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>
                                 </form></td>
                             <td><a href="{{action('SubSeriesController@show', $post->id)}}" class="btn btn-primary"> <i class="fa  fa-folder-open"></i></a></td>
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>
@@ -183,8 +203,12 @@
                         <th>D</th>
                         <th>S</th>
                         <th>E</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        @if($data[0]->esubseries == '0')
+                            <th>Editar</th>
+                        @endif
+                        @if($data[0]->dsubseries == '0')
+                            <th>Eliminar</th>
+                        @endif
                         <th>Abrir</th>
                     </tr>
                     </tfoot>
@@ -192,5 +216,6 @@
             </div>
             <!-- /.box-body -->
         </div>
+            @endif
     </div>
 @endsection

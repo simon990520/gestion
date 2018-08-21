@@ -17,7 +17,7 @@
                     <i class="fa fa-tags"></i>
                 </div>
                 <a href="{{ url('dependencias') }}" class="small-box-footer">
-                    More info <i class="fa fa-tags"></i>
+                    Más información <i class="fa fa-tags"></i>
                 </a>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     <i class="fa fa-laptop"></i>
                 </div>
                 <a href="{{ url('series') }}" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                    Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -51,7 +51,7 @@
                     <i class="fa fa-edit"></i>
                 </div>
                 <a href="#" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                    Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -62,13 +62,13 @@
                 <div class="inner">
                     <h3>65</h3>
 
-                    <p>Unique Visitors</p>
+                    <p>Archivos</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
                 <a href="#" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                    Más información <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -83,11 +83,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Linea de tiempo
+                Línea de tiempo
                 <small></small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
             </ol>
         </section>
 
