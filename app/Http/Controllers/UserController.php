@@ -123,7 +123,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->password = Hash::make($request->get('password'));
         $user->save();
 
         $permisos = Permisos::find($id);

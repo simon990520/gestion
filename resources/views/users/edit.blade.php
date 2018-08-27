@@ -42,7 +42,7 @@
                                 @endif
                             </div>
                             <div class="col-xs-3">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Contraseña" >
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Contraseña" disabled>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -51,7 +51,7 @@
                                 @endif
                             </div>
                             <div class="col-xs-3">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Repita contraseña">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Repita contraseña" disabled>
                             </div>
                         </div>
                         <br>
