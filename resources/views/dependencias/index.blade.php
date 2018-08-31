@@ -39,7 +39,10 @@
                 @else
                     @endif
                     @if($data[0]->ndependencias == '0')
-                <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
+                        <div class="btn-group">
+                            <a href="DependenciasReporte"><button type="button" class="btn bg-green btn-flat">Listado de Dependencias </button></a>
+                        </div>
+                <div class="box box-success col-md-12 col-sm-12 col-xl-12">
                     <div class="box-header">
                         <h3 class="box-title">Listado de dependencias</h3>
                     </div>

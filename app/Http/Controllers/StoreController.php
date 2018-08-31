@@ -6,6 +6,8 @@ use App\Store;
 use App\SubSeries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Knp\Snappy\Pdf;
 use function Sodium\compare;
 
 class StoreController extends Controller
@@ -43,6 +45,9 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('file')){
+
+
+
             $file = $request->file('file');
             $num = rand(0,100);
             $name = time().$num.'.pdf';

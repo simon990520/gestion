@@ -83,8 +83,6 @@ class BitacoraSerieController extends Controller
             $serie->original = $request->get('original');
             $serie->copia = $request->get('copia');
             $serie->soporte = $request->get('soporte');
-            $serie->gestion = $request->get('gestion');
-            $serie->central = $request->get('central');
             $serie->ctfisico = $request->get('ctfisico');
             $serie->ctelectronico = $request->get('ctelectronico');
             $serie->microfilmacion = $request->get('microfilmacion');
@@ -102,8 +100,6 @@ class BitacoraSerieController extends Controller
                 'original' => $request->get('original'),
                 'copia' => $request->get('copia'),
                 'soporte' => $request->get('soporte'),
-                'gestion' => $request->get('gestion'),
-                'central' => $request->get('central'),
                 'ctfisico' => $request->get('ctfisico'),
                 'ctelectronico' => $request->get('ctelectronico'),
                 'microfilmacion' => $request->get('microfilmacion'),
@@ -137,8 +133,6 @@ class BitacoraSerieController extends Controller
                 'original' => $request->get('original'),
                 'copia' => $request->get('copia'),
                 'soporte' => $request->get('soporte'),
-                'gestion' => $request->get('gestion'),
-                'central' => $request->get('central'),
                 'ctfisico' => $request->get('ctfisico'),
                 'ctelectronico' => $request->get('ctelectronico'),
                 'microfilmacion' => $request->get('microfilmacion'),

@@ -34,15 +34,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xs-5">
+                        <div class="col-xs-7">
                             <input type="text" name="nombreSeries" class="form-control" placeholder="Nombre" required value="@foreach($series as $post){{$post->nombreSeries}}@endforeach">
                         </div>
                         <div class="col-xs-2">
                             <input type="text" name="codigoSeries" class="form-control" placeholder="Codigo" required value="@foreach($series as $post){{$post->codigoSeries}}@endforeach">
                         </div>
-                        <div class="col-xs-2">
-                            <button name="enviar" class="btn btn-danger">Actualizar</button>
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-xs-3">
@@ -72,18 +70,8 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-xs-4">
-                            <p>Retención (años)</p>
-                            <div class="col-xs-6">
-                                <table class="">
-                                    <tr>
-                                        <td>Archivo Gestion &nbsp;<input type="number" class="col-xs-12 col-md-12" name="gestion" value="{{$series[0]->gestion}}"></td>
-                                        <td>Archivo Central &nbsp;<input type="number" class="col-xs-12 col-md-12" name="central" value="{{$series[0]->central}}"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-xs-5">
+
+                        <div class="col-xs-7">
                             <p>Disposición Final</p>
                             <div class="col-xs-3">
                                 <table class=" text-center">
@@ -118,6 +106,9 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="col-xs-2">
+                            <button name="enviar" class="btn btn-danger">Actualizar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,8 +131,6 @@
                         <th>Original</th>
                         <th>Copia</th>
                         <th> <small> Soporte electronico</small></th>
-                        <th> <small>Archivo gestión</small></th>
-                        <th><small>Archivo central</small></th>
                         <th>SF</th>
                         <th>SE</th>
                         <th>M</th>
@@ -166,8 +155,6 @@
                             <td> @if($post->original==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                             <td>@if($post->copia==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                             <td>@if($post->soporte==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                            <td>{{$post->gestion}}</td>
-                            <td>{{$post->central}}</td>
                             <td>@if($post->ctfisico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                             <td>@if($post->ctelectronico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                             <td>@if($post->microfilmacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
@@ -197,8 +184,6 @@
                         <th>Original</th>
                         <th>Copia</th>
                         <th> <small> Soporte electronico</small></th>
-                        <th> <small>Archivo gestión</small></th>
-                        <th><small>Archivo central</small></th>
                         <th>SF</th>
                         <th>SE</th>
                         <th>M</th>

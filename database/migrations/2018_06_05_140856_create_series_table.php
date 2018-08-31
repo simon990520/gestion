@@ -22,15 +22,12 @@ class CreateSeriesTable extends Migration
             $table->string('original',11)->nullable();
             $table->string('copia',11)->nullable();
             $table->string('soporte',11)->nullable();
-            $table->string('gestion',11)->nullable();
-            $table->string('central',11)->nullable();
             $table->string('ctfisico',11)->nullable();
             $table->string('ctelectronico',11)->nullable();
             $table->string('microfilmacion',11)->nullable();
             $table->string('digitalizacion',11)->nullable();
             $table->string('seleccion',11)->nullable();
             $table->string('eliminacion',11)->nullable();
-            $table->string('estado',11);
 
             $table->timestamps();
         });

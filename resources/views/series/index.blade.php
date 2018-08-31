@@ -34,15 +34,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xs-5">
+                                <div class="col-xs-7">
                                     <input type="text" name="nombreSeries" class="form-control" placeholder="Nombre" required>
                                 </div>
                                 <div class="col-xs-2">
                                     <input type="text" name="codigoSeries" class="form-control" placeholder="Codigo" required>
                                 </div>
-                                <div class="col-xs-2">
-                                    <button name="enviar" class="btn btn-danger">Guardar</button>
-                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-xs-4">
@@ -72,18 +70,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <p>Retención (años)</p>
-                                    <div class="col-xs-6">
-                                        <table class="">
-                                            <tr>
-                                                <td>Archivo Gestion &nbsp;<input type="number" class="col-xs-12 col-md-12" name="gestion" value="0" required></td>
-                                                <td>Archivo Central &nbsp;<input type="number" class="col-xs-12 col-md-12" name="central" value="0" required></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-xs-5">
+
+                                <div class="col-xs-8">
                                     <p>Disposición Final</p>
                                     <div class="col-xs-3">
                                         <table class=" text-center">
@@ -97,7 +85,7 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-3">
                                         <table class=" text-center">
                                             <tr>
                                                 <td colspan="2">Tecnologia de Conservación</td>
@@ -117,6 +105,9 @@
                                             </tr>
                                         </table>
                                     </div>
+                                    <div class="col-xs-3">
+                                        <button name="enviar" class="btn btn-danger">Guardar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -126,9 +117,12 @@
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
-                        @if($data[0]->nseries == '0')
+                    @if($data[0]->nseries == '0')
+                            <div class="btn-group">
+                                <a href="SeriesReporte"><button type="button" class="btn bg-green btn-flat">Listado de   Series </button></a>
+                            </div>
 
-                        <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
+                        <div class="box box-success col-md-12 col-sm-12 col-xl-12">
                             <div class="box-header">
                                 <h3 class="box-title">Listado de Series</h3>
                             </div>
@@ -144,8 +138,6 @@
                                         <th>Original</th>
                                         <th>Copia</th>
                                         <th> <small> Soporte electronico</small></th>
-                                        <th> <small>Archivo gestión</small></th>
-                                        <th><small>Archivo central</small></th>
                                         <th>SF</th>
                                         <th>SE</th>
                                         <th>M</th>
@@ -170,8 +162,6 @@
                                             <td> @if($post->original==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                                             <td>@if($post->copia==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                                             <td>@if($post->soporte==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
-                                            <td>{{$post->gestion}}</td>
-                                            <td>{{$post->central}}</td>
                                             <td>@if($post->ctfisico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                                             <td>@if($post->ctelectronico==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
                                             <td>@if($post->microfilmacion==1)<span class="label label-success"><i class="fa fa-check"></i></span>@else<span class="label label-danger"><i class="fa fa-ban"></i></span>@endif</td>
@@ -200,8 +190,6 @@
                                         <th>Original</th>
                                         <th>Copia</th>
                                         <th> <small> Soporte electronico</small></th>
-                                        <th> <small>Archivo gestión</small></th>
-                                        <th><small>Archivo central</small></th>
                                         <th>SF</th>
                                         <th>SE</th>
                                         <th>M</th>

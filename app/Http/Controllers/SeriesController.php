@@ -20,7 +20,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->where('estado','!=','3')->get();
+        $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->get();
             /*dd($series);*/
         $dependencias = Dependencias::all()->toArray();
         /*$series = Serie::all()->toArray();*/
@@ -48,12 +48,7 @@ class SeriesController extends Controller
      */
     public function store(SeriesRequest $request)
     {
-        $gestion = $request->get('gestion');
-        if ($gestion == '0'){
-           $estado = '2';
-        }else{
-            $estado = '1';
-        }
+
         $series = new Serie([
             'dependencias_id' => $request->get('dependencias_id'),
             'nombreSeries' => $request->get('nombreSeries'),
@@ -61,15 +56,12 @@ class SeriesController extends Controller
             'original' => $request->get('original'),
             'copia' => $request->get('copia'),
             'soporte' => $request->get('soporte'),
-            'gestion' => $request->get('gestion'),
-            'central' => $request->get('central'),
             'ctfisico' => $request->get('ctfisico'),
             'ctelectronico' => $request->get('ctelectronico'),
             'microfilmacion' => $request->get('microfilmacion'),
             'digitalizacion' => $request->get('digitalizacion'),
             'seleccion' => $request->get('seleccion'),
             'eliminacion' => $request->get('eliminacion'),
-            'estado' => $estado,
         ]);
         $series->save();
         $bitacora = new Bitacora_series([
@@ -80,8 +72,6 @@ class SeriesController extends Controller
             'original' => $request->get('original'),
             'copia' => $request->get('copia'),
             'soporte' => $request->get('soporte'),
-            'gestion' => $request->get('gestion'),
-            'central' => $request->get('central'),
             'ctfisico' => $request->get('ctfisico'),
             'ctelectronico' => $request->get('ctelectronico'),
             'microfilmacion' => $request->get('microfilmacion'),
@@ -126,8 +116,8 @@ class SeriesController extends Controller
     public function edit($id)
     {
         $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
-        $seriess = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->where('estado','!=','3')->get();
-        $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.gestion','series.central','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias','dependencias.id as depeid')->where('series.id', '=', $id)->get();
+        $seriess = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias')->whereNull('series.deleted_at')->whereNull('dependencias.deleted_at')->get();
+        $series = DB::table('series')->join('dependencias','dependencias.id', '=', 'series.dependencias_id')->select('series.id','series.nombreSeries','series.codigoSeries','series.original','series.copia','series.soporte','series.ctfisico','series.ctelectronico','series.microfilmacion','series.digitalizacion','series.seleccion','series.eliminacion','dependencias.nombreDependencias','dependencias.codigoDependencias','dependencias.id as depeid')->where('series.id', '=', $id)->get();
         $dependencias = Dependencias::all()->toArray();
         /*dd($data);*/
         return view('series.edit', compact('series','id','dependencias','seriess','data'));
@@ -142,12 +132,7 @@ class SeriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $gestion = $request->get('gestion');
-        if ($gestion == '0'){
-            $estado = '2';
-        }else{
-            $estado = '1';
-        }
+
         $series = Serie::find($id);
         $series->dependencias_id = $request->get('dependencias_id');
         $series->nombreSeries = $request->get('nombreSeries');
@@ -155,15 +140,12 @@ class SeriesController extends Controller
         $series->original = $request->get('original');
         $series->copia = $request->get('copia');
         $series->soporte = $request->get('soporte');
-        $series->gestion = $request->get('gestion');
-        $series->central = $request->get('central');
         $series->ctfisico = $request->get('ctfisico');
         $series->ctelectronico = $request->get('ctelectronico');
         $series->microfilmacion = $request->get('microfilmacion');
         $series->digitalizacion = $request->get('digitalizacion');
         $series->seleccion = $request->get('seleccion');
         $series->eliminacion = $request->get('eliminacion');
-        $series->estado = $estado;
         $series->save();
 
         $bitacora = new Bitacora_series([
@@ -174,8 +156,6 @@ class SeriesController extends Controller
             'original' => $request->get('original'),
             'copia' => $request->get('copia'),
             'soporte' => $request->get('soporte'),
-            'gestion' => $request->get('gestion'),
-            'central' => $request->get('central'),
             'ctfisico' => $request->get('ctfisico'),
             'ctelectronico' => $request->get('ctelectronico'),
             'microfilmacion' => $request->get('microfilmacion'),
@@ -217,8 +197,6 @@ class SeriesController extends Controller
             'original' => $series->original,
             'copia' => $series->copia,
             'soporte' => $series->soporte,
-            'gestion' => $series->gestion,
-            'central' => $series->central,
             'ctfisico' => $series->ctfisico,
             'ctelectronico' => $series->ctelectronico,
             'microfilmacion' => $series->microfilmacion,

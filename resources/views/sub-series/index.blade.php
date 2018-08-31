@@ -120,8 +120,12 @@
             </div>
         </form>
         @endif
-        @if($data[0]->nsubseries == '0')
-        <div class="box box-danger col-md-12 col-sm-12 col-xl-12">
+    @if($data[0]->nsubseries == '0')
+            <div class="btn-group">
+                <a href="TranferenciasReporte"><button type="button" class="btn bg-green btn-flat">Listado de  Subseries Transferidas</button></a>
+                <a href="SunseriesReporte"><button type="button" class="btn bg-blue btn-flat">Listado de todas las  Subseries </button></a>
+            </div>
+            <div class="box box-success col-md-12 col-sm-12 col-xl-12">
             <div class="box-header">
                 <h3 class="box-title">Listado de Sub-series</h3>
             </div>
