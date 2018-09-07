@@ -139,6 +139,8 @@ class CentralController extends Controller
      */
     public function destroy($id)
     {
-
+        $central = Central::find($id);
+        $central->delete();
+        return redirect('transferencias');
     }
 }
