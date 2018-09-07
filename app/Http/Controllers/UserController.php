@@ -104,7 +104,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->get();
-        $datos = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('permisos.id','users.name','users.email','permisos.ndependencias','permisos.cdependencias','permisos.edependencias','permisos.ddependencias','permisos.nseries','permisos.cseries','permisos.eseries','permisos.dseries','permisos.nsubseries','permisos.csubseries','permisos.esubseries','permisos.dsubseries','permisos.nusuarios','permisos.cusuarios','permisos.eusuarios','permisos.dusuarios','users.id as pid')->where('user_id','=',$id)->get();
+        $datos = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('permisos.id','users.name','users.email','permisos.ndependencias','permisos.cdependencias','permisos.edependencias','permisos.ddependencias','permisos.nseries','permisos.cseries','permisos.eseries','permisos.dseries','permisos.nsubseries','permisos.csubseries','permisos.esubseries','permisos.dsubseries','permisos.nusuarios','permisos.cusuarios','permisos.eusuarios','permisos.dusuarios','permisos.transferir','permisos.recivir','permisos.ver','users.id as pid')->where('user_id','=',$id)->get();
         /*dd($datos);*/
         $permisos = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
 
@@ -142,6 +142,9 @@ class UserController extends Controller
         $permisos->cusuarios = $request->get('cusuarios');
         $permisos->eusuarios = $request->get('eusuarios');
         $permisos->dusuarios = $request->get('dusuarios');
+        $permisos->transferir = $request->get('transferir');
+        $permisos->recivir = $request->get('recivir');
+        $permisos->ver = $request->get('ver');
         $permisos->user_id = $user->id;
         $permisos->save();
 

@@ -124,6 +124,21 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h4>Transferencias</h4>
+                                <label>
+                                    <input name="transferir" type="checkbox" class="flat-red" value="0" @if($datos[0]->transferir != '0')@else checked @endif> Transferir Transferencias
+                                </label>
+                                <label>
+                                    <input name="recivir" type="checkbox" class="flat-red" value="0" @if($datos[0]->recivir != '0')@else checked @endif> Recibir Transferencias
+                                </label>
+                                <label>
+                                    <input name="ver" type="checkbox" class="flat-red" value="0" @if($datos[0]->ver != '0')@else checked @endif> Navegar Transferencias
+                                </label>
+                            </div>
+                        </div>
                         <div class="row">
                             <button class="btn btn-success  col-md-8 col-md-offset-2">Guardar</button>
                         </div>

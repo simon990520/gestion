@@ -122,6 +122,21 @@
                                         </label>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <h4>Transferencias</h4>
+                                        <label>
+                                            <input name="transferir" type="checkbox" class="flat-red" value="0"> Transferir Transferencias
+                                        </label>
+                                        <label>
+                                            <input name="recivir" type="checkbox" class="flat-red" value="0"> Recibir Transferencias
+                                        </label>
+                                        <label>
+                                            <input name="ver" type="checkbox" class="flat-red" value="0"> Navegar Transferencias
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">

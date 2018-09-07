@@ -19,14 +19,16 @@ class TransferenciasController extends Controller
     public function index()
     {
         /*dd($series);*/
-        $sub_series = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries','sub_series.estado','series.nombreSeries')->whereNull('sub_series.deleted_at')->whereNull('series.deleted_at')->where('sub_series.estado','!=','1')->get();
+        $sub_series = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries','sub_series.estado','series.nombreSeries')->whereNull('sub_series.deleted_at')->whereNull('series.deleted_at')->where('sub_series.estado','!=','1')->where('sub_series.estado','!=','4')->get();
+        $central = DB::table('centrals')->join('series','series.id', '=', 'centrals.serie_id')->select('centrals.id','centrals.nombreSubSeries','centrals.codigoSubSeries','centrals.originalSubSeries','centrals.copiaSubSeries','centrals.soporteSubSeries','centrals.gestionSubSeries','centrals.centralSubSeries','centrals.ctfisicoSubSeries','centrals.ctelectronicoSubSeries','centrals.microfilmacionSubSeries','centrals.digitalizacionSubSeries','centrals.estante','centrals.balda','centrals.caja','centrals.carpeta','centrals.seleccionSubSeries','centrals.eliminacionSubSeries','series.nombreSeries')->whereNull('series.deleted_at')->get();
+        $recibir = DB::table('sub_series')->join('series','series.id', '=', 'sub_series.serie_id')->select('sub_series.id','sub_series.nombreSubSeries','sub_series.codigoSubSeries','sub_series.originalSubSeries','sub_series.copiaSubSeries','sub_series.soporteSubSeries','sub_series.gestionSubSeries','sub_series.centralSubSeries','sub_series.ctfisicoSubSeries','sub_series.ctelectronicoSubSeries','sub_series.microfilmacionSubSeries','sub_series.digitalizacionSubSeries','sub_series.seleccionSubSeries','sub_series.eliminacionSubSeries','sub_series.estado','sub_series.updated_at','series.nombreSeries')->whereNull('sub_series.deleted_at')->whereNull('series.deleted_at')->where('sub_series.estado','=','3')->get();
         $dependencias = Dependencias::all()->toArray();
         /*$series = Serie::all()->toArray();*/
 
         $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
 
-
-        return view('transferencias.index', compact('series','id','dependencias','seriess','sub_series'));
+        /*dd($recibir);*/
+        return view('transferencias.index', compact('series','id','dependencias','seriess','sub_series','recibir','central','data'));
     }
 
     /**
@@ -81,7 +83,7 @@ class TransferenciasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $series = Serie::find($id);
+        $series = SubSeries::find($id);
         /*dd($series);*/
         $series->estado = '3';
         $series->save();

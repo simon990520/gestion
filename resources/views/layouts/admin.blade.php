@@ -322,7 +322,7 @@
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('Cerar sesión') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

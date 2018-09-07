@@ -31,6 +31,9 @@ class CreatePermisosTable extends Migration
             $table->string('cusuarios',2)->nullable();
             $table->string('eusuarios',2)->nullable();
             $table->string('dusuarios',2)->nullable();
+            $table->string('transferir',2)->nullable();
+            $table->string('recivir',2)->nullable();
+            $table->string('ver',2)->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

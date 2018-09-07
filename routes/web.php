@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 
 
+
 Route::group(['middleware' => 'auth'], function() {
 
 //Roles
@@ -59,6 +60,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('store', 'StoreController');
     Route::resource('users', 'UserController');
     Route::resource('transferencias', 'TransferenciasController');
+    Route::resource('central', 'CentralController');
+    Route::resource('roles', 'RoleController');
 
 
     Route::get('/401', function () {

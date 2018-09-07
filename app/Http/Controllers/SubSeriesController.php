@@ -153,6 +153,7 @@ class SubSeriesController extends Controller
         }
 
         $Subseries = SubSeries::find($id);
+        /*dd($Subseries);*/
         $Subseries->serie_id = $request->get('serie_id');
         $Subseries->nombreSubSeries = $request->get('nombreSubSeries');
         $Subseries->codigoSubSeries = $request->get('codigoSubSeries');

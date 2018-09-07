@@ -39,7 +39,10 @@ class UsersTableSeeder extends Seeder
             'cusuarios' => '0',
             'eusuarios' => '0',
             'dusuarios' => '0',
-            'user_id' => '1'
+            'transferir' => '0',
+            'recivir' => '0',
+            'ver' => '0',
+            'user_id' => '1',
         ]);
         /*Dependencias::create([
             'nombreDependencias' => 'Despacho subdirector',
