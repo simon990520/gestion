@@ -131,7 +131,7 @@
                         <th>Dependencia</th>
                         <th>Nombre</th>
                         <th>Codigo</th>
-                        <th> Estanre</th>
+                        <th> Estante</th>
                         <th> Balda</th>
                         <th> Caja</th>
                         <th> Carpeta</th>
@@ -150,7 +150,6 @@
                             <td>{{$post->balda}}</td>
                             <td>{{$post->caja}}</td>
                             <td>{{$post->carpeta}}</td>
-                            <td>{{$post->centralSubSeries}}</td>
                                 <td><form action="{{action('CentralController@destroy', $post->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
@@ -166,7 +165,7 @@
                         <th>Dependencia</th>
                         <th>Nombre</th>
                         <th>Codigo</th>
-                        <th> Estanre</th>
+                        <th> Estante</th>
                         <th> Balda</th>
                         <th> Caja</th>
                         <th> Carpeta</th>
