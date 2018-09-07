@@ -10,6 +10,7 @@
         </div>
     @endif
     {{--fin de la denegacion--}}
+
     <div class="container">
         <div class="row">.</div>
         <div class="row">

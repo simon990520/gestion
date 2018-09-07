@@ -57,7 +57,7 @@
                         <br>
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Permisos</h3>
+                                <h3 class="box-title">simon</h3>
                             </div>
                             <div class="box-body">
                                 <div class="row">

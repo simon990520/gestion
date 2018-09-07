@@ -33,7 +33,7 @@ class DependenciasController extends Controller
     {
         $dependencias = Dependencias::all()->toArray();
         $data = DB::table('permisos')->join('users','users.id', '=', 'permisos.user_id')->select('*')->where('users.id', '=', Auth::user()->id )->get();
-
+        /*dd($dependencias);*/
 
         return view('dependencias.index', compact('dependencias','data'));
     }
