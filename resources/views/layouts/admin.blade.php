@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{asset('admin/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{asset('admin/css/ionicons.min.css')}}">
+    <script src="{{asset('admin/js/scanner.js')}}"></script>
+
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{asset('admin/css/jquery-jvectormap.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/dataTables.bootstrap.min.css')}}">
@@ -34,9 +36,92 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        //
+        // Please read scanner.js developer's guide at: http://asprise.com/document-scan-upload-image-browser/ie-chrome-firefox-scanner-docs.html
+        //
+        /** Scan: output PDF original and JPG thumbnails */
+        function scanToPdfWithThumbnails() {
+            scanner.scan(displayImagesOnPage,
+                {
+                    "output_settings": [
+                        {
+                            "type": "return-base64",
+                            "format": "pdf",
+                            "pdf_text_line": "By ${USERNAME} on ${DATETIME}"
+                        },
+                        {
+                            "type": "return-base64-thumbnail",
+                            "format": "jpg",
+                            "thumbnail_height": 200
+                        }
+                    ]
+                }
+            );
+        }
+        /** Processes the scan result */
+        function displayImagesOnPage(successful, mesg, response) {
+            if(!successful) { // On error
+                console.error('Failed: ' + mesg);
+                return;
+            }
+            if(successful && mesg != null && mesg.toLowerCase().indexOf('user cancel') >= 0) { // User cancelled.
+                console.info('User cancelled');
+                return;
+            }
+            var scannedImages = scanner.getScannedImages(response, true, false); // returns an array of ScannedImage
+            for(var i = 0; (scannedImages instanceof Array) && i < scannedImages.length; i++) {
+                var scannedImage = scannedImages[i];
+                processOriginal(scannedImage);
+            }
+            var thumbnails = scanner.getScannedImages(response, false, true); // returns an array of ScannedImage
+            for(var i = 0; (thumbnails instanceof Array) && i < thumbnails.length; i++) {
+                var thumbnail = thumbnails[i];
+                processThumbnail(thumbnail);
+            }
+        }
+        /** Images scanned so far. */
+        var imagesScanned = [];
+        /** Processes an original */
+        function processOriginal(scannedImage) {
+            imagesScanned.push(scannedImage);
+        }
+        /** Processes a thumbnail */
+        function processThumbnail(scannedImage) {
+            var elementImg = scanner.createDomElementFromModel( {
+                'name': 'img',
+                'attributes': {
+                    'class': 'scanned',
+                    'src': scannedImage.src
+                }
+            });
+            document.getElementById('images').appendChild(elementImg);
+        }
+        /** Upload scanned images by submitting the form */
+        function submitFormWithScannedImages() {
+            if (scanner.submitFormWithImages('form1', imagesScanned, function (xhr) {
+                if (xhr.readyState == 4) { // 4: request finished and response is ready
+                    document.getElementById('server_response').innerHTML = "<h5>Guardado correctamente  </h5>" + xhr.responseText;
+                    document.getElementById('images').innerHTML = ''; // clear images
+                    imagesScanned = [];
+                }
+            })) {
+                document.getElementById('server_response').innerHTML = "Guardando...";
+            } else {
+                document.getElementById('server_response').innerHTML = "Por favor primero escaneé el archivo.";
+            }
+        }
+    </script>
 
+    <style>
+        img.scanned {
+            width: 100%; /** Sets the display size */
+        }
+        div#images {
+            margin-top: 20px;
+        }
+    </style>
     <!-- Google Font -->
-    <link rel="stylesheet"
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>

@@ -16,6 +16,9 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/login', function () {
     return view('auth.login');
 });
 
@@ -62,6 +65,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('transferencias', 'TransferenciasController');
     Route::resource('central', 'CentralController');
     Route::resource('roles', 'RoleController');
+    Route::resource('archivos', 'ArchivoController');
 
 
     Route::get('/401', function () {

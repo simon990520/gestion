@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\archivo;
 use App\Store;
 use App\SubSeries;
 use Illuminate\Http\Request;
@@ -44,15 +45,6 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('file')){
-
-
-
-            $file = $request->file('file');
-            $num = rand(0,100);
-            $name = time().$num.'.pdf';
-            $file->move(public_path().'/pdf/',$name);
-        }
 
 
         $store = new Store([
@@ -62,7 +54,6 @@ class StoreController extends Controller
             'fecha' => $request->get('fecha'),
             'radicado' => $request->get('radicado'),
             'unidad' => $request->get('unidad'),
-            'file' => $name,
             'Subserie_id' => $request->get('Subserie_id'),
         ]);
 
@@ -84,7 +75,12 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+        $archivos = DB::table('archivos')
+            ->select(DB::raw('*'))
+            ->where('stores_id', '=', $id)
+            ->get();
+        /*dd($archivos);*/
+        return view('archivo.index', compact('id','archivos'));
     }
 
     /**

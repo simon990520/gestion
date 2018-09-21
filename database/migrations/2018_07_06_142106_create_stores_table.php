@@ -21,7 +21,6 @@ class CreateStoresTable extends Migration
             $table->string('fecha',20);
             $table->string('radicado',80)->nullable();
             $table->string('unidad',80);
-            $table->string('file',150);
             $table->integer('Subserie_id')->unsigned();
             $table->foreign('Subserie_id')->references('id')->on('sub_series')->onDelete('cascade');
             $table->timestamps();

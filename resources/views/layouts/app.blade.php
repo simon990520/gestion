@@ -21,11 +21,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('{{asset('welcome/assets/img/header-1.jpeg')}}');background-size: 100%;"  >
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
             <div class="container">
-                <a class="navbar-brand white" href="{{ url('/') }}">
+                <a class="navbar-brand " href="{{ url('/') }}">
                     <h4 class="">Sistema de gestion</h4>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -2,10 +2,11 @@
 
 @section('content')
 <div class="container">
+    <br><br><br><br><br><br>
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center">{{ __('Name APP::') }}</div>
+                <div class="card-header text-center">{{ __('Sena Gestión') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -48,8 +49,8 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn ">
+                            <div class="">
+                                <button  type="submit" class="btn btn-success col-md-12">
                                     {{ __('Login') }}
                                 </button>
 
