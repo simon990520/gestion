@@ -20,8 +20,22 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <style>
+        .frente{
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            background: #000;
+            color: #fff;
+            width: 100%;
+            height: 100%;;
+            opacity: 0.3;
+
+        }
+    </style>
 </head>
 <body style="background-image: url('{{asset('welcome/assets/img/header-1.jpeg')}}');background-size: 100%;"  >
+<div class="frente"></div>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
             <div class="container">

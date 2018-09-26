@@ -16,6 +16,7 @@ class CreateArchivosTable extends Migration
         Schema::create('archivos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ruta',80);
+            $table->string('consecutivo',11);
             $table->integer('stores_id')->unsigned();
             $table->foreign('stores_id')->references('id')->on('stores')->onDelete('cascade');
             $table->timestamps();

@@ -50,7 +50,6 @@ class StoreController extends Controller
         $store = new Store([
             'nombre' => $request->get('nombre'),
             'asunto' => $request->get('asunto'),
-            'consecutivo' => $request->get('consecutivo'),
             'fecha' => $request->get('fecha'),
             'radicado' => $request->get('radicado'),
             'unidad' => $request->get('unidad'),

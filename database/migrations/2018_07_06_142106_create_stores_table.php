@@ -17,7 +17,6 @@ class CreateStoresTable extends Migration
             $table->increments('id');
             $table->string('nombre',150);
             $table->string('asunto',150);
-            $table->string('consecutivo',11);
             $table->string('fecha',20);
             $table->string('radicado',80)->nullable();
             $table->string('unidad',80);

@@ -18,10 +18,6 @@
                                 <input name="asunto" type="text" class="form-control" placeholder="Asunto" required>
                             </div>
                             <div class="col-xs-2">
-                                <div  class="form-control "  >@if(isset($last)){{$last->consecutivo+1}} @else 1 @endif</div>
-                                <input name="consecutivo" type="hidden" class="form-control " placeholder="Folio" value="@if(isset($last)){{$last->consecutivo+1}} @else 1 @endif">
-                            </div>
-                            <div class="col-xs-2">
                                 <input name="fecha" type="date" class="form-control" placeholder="Fecha"  required>
                             </div>
                             <div class="col-xs-2">
@@ -61,7 +57,6 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>asunto</th>
-                                <th>folio</th>
                                 <th>fecha</th>
                                 <th>radicado</th>
                                 <th>unidad</th>
@@ -77,7 +72,6 @@
                                     <td>{{$post->id}}</td>
                                     <td>{{$post->nombre}}</td>
                                     <td>{{$post->asunto}}</td>
-                                    <td>{{$post->consecutivo}}</td>
                                     <td>{{$post->fecha}}</td>
                                     <td>{{$post->radicado}}</td>
                                     <td>{{$post->unidad}}</td>
@@ -99,7 +93,6 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>asunto</th>
-                                <th>folio</th>
                                 <th>fecha</th>
                                 <th>radicado</th>
                                 <th>unidad</th>

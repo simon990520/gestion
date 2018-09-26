@@ -33,10 +33,10 @@ function processRequest() {
                 }
 
                 print("<p>$filename</p>");
-                $servername = "127.0.0.1";
-                $username = "root";
-                $password = "";
-                $dbname = "admin";
+                $servername = "ec2-107-22-192-11.compute-1.amazonaws.com";
+                $username = "vddqdpkoyzcfga";
+                $password = "f9bf4e88a47e53e001a9bdefb0c72b33ed4aa5fdedcccd9fb6b321fde69d60d5";
+                $dbname = "d7mgsl9823aitl";
 
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
