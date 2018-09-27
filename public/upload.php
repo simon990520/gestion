@@ -42,6 +42,7 @@ function processRequest() {
                     $db = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
                     $query = "INSERT INTO archivos VALUES ($ruta, $id)";
                     $result = pg_query($query);
+                    echo "listo simon";
                     /*$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $ruta = substr($filename, 0, -4);
@@ -189,7 +190,7 @@ function getImageExtensionByMimeType($mimeType) {
     }
 }
 
-/*echo '<meta http-equiv="REFRESH" content="1">';*/
+
 
 ?>
 
