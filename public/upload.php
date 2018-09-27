@@ -18,6 +18,26 @@ function processRequest() {
         foreach($fileNames as $index => $filename) {
             if(strpos($filename, 'ERROR:') === 0) {
                 print("<p>$filename</p>");
+                try {
+                    $db = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
+                    $query = "INSERT INTO archivos VALUES ($ruta, $id)";
+                    $result = pg_query($query);
+                    echo "listo simon";
+                    /*$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $ruta = substr($filename, 0, -4);
+                    $id = $_REQUEST['id'];
+                    $sql = "INSERT INTO archivos (ruta, stores_id)VALUES ($ruta, $id)";
+                    $conn->exec($sql);*/
+
+                }
+                catch(PDOException $e)
+                {
+                    echo $query . "<br>" . $e->getMessage();
+                }
+
+                $conn = null;
+            }
             } else {
                 $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
                 $targetUrl = dirname(getCurrentPageURL()) . str_replace(DIRECTORY_SEPARATOR, "/", substr(UPLOAD_DIR, strlen(__DIR__))) . $filename;
