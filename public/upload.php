@@ -39,20 +39,20 @@ function processRequest() {
                 $dbname = "d7mgsl9823aitl";
 
                 try {
-                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                    // set the PDO error mode to exception
+                    $db = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
+                    $query = "INSERT INTO archivos VALUES ($ruta, $id)";
+                    $result = pg_query($query);
+                    /*$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    /*$ruta = $fileNames;*/
                     $ruta = substr($filename, 0, -4);
                     $id = $_REQUEST['id'];
                     $sql = "INSERT INTO archivos (ruta, stores_id)VALUES ($ruta, $id)";
-                    // use exec() because no results are returned
-                    $conn->exec($sql);
+                    $conn->exec($sql);*/
 
                 }
                 catch(PDOException $e)
                 {
-                    echo $sql . "<br>" . $e->getMessage();
+                    echo $query . "<br>" . $e->getMessage();
                 }
 
                 $conn = null;
@@ -189,7 +189,7 @@ function getImageExtensionByMimeType($mimeType) {
     }
 }
 
-echo '<meta http-equiv="REFRESH" content="1">';
+/*echo '<meta http-equiv="REFRESH" content="1">';*/
 
 ?>
 
