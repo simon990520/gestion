@@ -68,7 +68,7 @@ class ArchivoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*dd($id)*/
     }
 
     /**
