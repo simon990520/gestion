@@ -47,7 +47,7 @@ function processRequest() {
 
                 $servername = "x3ztd854gaa7on6s.cbetxkdyhwsb.us-east-1.rds.amazonaws.com	";
                 $username = "mvfwn7lg6rsquj30";
-                $password = "ljcasldhc4ltp5nn";
+                $password = "bxhpdu2s888ndi9c";
                 $dbname = "xrh1wue2x2lohk5p";
 
                 try {
