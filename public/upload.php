@@ -46,9 +46,9 @@ function processRequest() {
                 $result = pg_query($conn, $query1 ); */
 
                 $servername = "127.0.0.1";
-                $username = "root";
-                $password = "";
-                $dbname = "admin";
+                $username = "b8a153841b3d7b";
+                $password = "90fff105";
+                $dbname = "heroku_396cd058712d213";
 
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
