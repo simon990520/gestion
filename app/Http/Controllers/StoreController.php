@@ -78,8 +78,10 @@ class StoreController extends Controller
             ->select(DB::raw('*'))
             ->where('stores_id', '=', $id)
             ->get();
-        /*dd($archivos);*/
-        return view('archivo.index', compact('id','archivos'));
+
+        $title = Store::find($archivos[0]->stores_id);
+       /* dd($title);*/
+        return view('archivo.index', compact('id','archivos','title'));
     }
 
     /**

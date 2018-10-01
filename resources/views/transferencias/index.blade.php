@@ -137,6 +137,7 @@
                         <th> Carpeta</th>
                         <th>Eliminar</th>
                         <th>Editar</th>
+                        <th>Abrir</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -156,6 +157,7 @@
                                         <button class="btn btn-danger" type="submit"><i class="fa  fa-trash"></i></button>
                                     </form></td>
                             <td><a href="{{action('CentralController@edit', $post->id)}}" class="btn btn-warning"> <i class="fa  fa-refresh"></i></a></td>
+                            <td><a href="{{action('SubSeriesController@show', $post->id)}}" class="btn btn-primary"> <i class="fa  fa-folder-open"></i></a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -171,6 +173,7 @@
                         <th> Carpeta</th>
                         <th>Eliminar</th>
                         <th>Editar</th>
+                        <th>Abrir</th>
                     </tr>
                     </tfoot>
                 </table>

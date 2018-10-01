@@ -53,7 +53,7 @@
                         {
                             "type": "return-base64-thumbnail",
                             "format": "jpg",
-                            "thumbnail_height": 200
+                            "thumbnail_height": 800
                         }
                     ]
                 }

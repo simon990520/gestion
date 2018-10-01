@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <h2 class="text-center bg-green">{{$title->asunto}}</h2>
         .
         <br>
         <div class="col-md-12">

@@ -33,16 +33,17 @@ function processRequest() {
                 }
 
                 print("<p>$filename</p>");
-                $ruta = substr($filename, 0, -4);
+                /*$ruta = substr($filename, 0, -4);
                 $id = $_REQUEST['id'];
-//Connecting to db here
                 $conn_string = "host=ec2-107-22-192-11.compute-1.amazonaws.co port=5432 dbname=d7mgsl9823aitl user=vddqdpkoyzcfga password=f9bf4e88a47e53e001a9bdefb0c72b33ed4aa5fdedcccd9fb6b321fde69d60d5"; // change the db credentials here
                 $conn = pg_connect($conn_string);
-//inserting data order
                 $query1 = "INSERT INTO prenotazioni  (ruta, stores_id) VALUES ('$ruta', '$id')";
-//execute the query here
-                $result = pg_query($conn, $query1 ); //if you are using pg_query and $conn is the connection resource
-// Interni
+                $result = pg_query($conn, $query1 ); *//*$ruta = substr($filename, 0, -4);
+                $id = $_REQUEST['id'];
+                $conn_string = "host=ec2-107-22-192-11.compute-1.amazonaws.co port=5432 dbname=d7mgsl9823aitl user=vddqdpkoyzcfga password=f9bf4e88a47e53e001a9bdefb0c72b33ed4aa5fdedcccd9fb6b321fde69d60d5"; // change the db credentials here
+                $conn = pg_connect($conn_string);
+                $query1 = "INSERT INTO prenotazioni  (ruta, stores_id) VALUES ('$ruta', '$id')";
+                $result = pg_query($conn, $query1 ); */
 
                 /*$servername = "127.0.0.1";
                 $username = "root";
@@ -197,7 +198,8 @@ function getImageExtensionByMimeType($mimeType) {
     }
 }
 
-
+echo '<meta http-equiv="REFRESH" content="5">';
+echo 'simon';
 
 ?>
 
