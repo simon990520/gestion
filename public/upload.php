@@ -45,10 +45,10 @@ function processRequest() {
                 $query1 = "INSERT INTO prenotazioni  (ruta, stores_id) VALUES ('$ruta', '$id')";
                 $result = pg_query($conn, $query1 ); */
 
-                $servername = "ofcmikjy9x4lroa2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-                $username = "kef3tins35oiuav6";
-                $password = "xy3mq84j7cahchrv";
-                $dbname = "ur6lm9c4l3ozz0cf";
+                $servername = "mna97msstjnkkp7h.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+                $username = "egkeoaz6txgklz8j";
+                $password = "epwfb7d9s66mbjzn";
+                $dbname = "moys8cd09w93wq3h";
 
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -198,8 +198,7 @@ function getImageExtensionByMimeType($mimeType) {
     }
 }
 
-echo '<meta http-equiv="REFRESH" content="5">';
-echo 'simon';
+echo '<meta http-equiv="REFRESH" content="1">';
 
 ?>
 
