@@ -45,10 +45,10 @@ function processRequest() {
                 $query1 = "INSERT INTO prenotazioni  (ruta, stores_id) VALUES ('$ruta', '$id')";
                 $result = pg_query($conn, $query1 ); */
 
-                $servername = "127.0.0.1";
-                $username = "b8a153841b3d7b";
-                $password = "90fff105";
-                $dbname = "heroku_396cd058712d213";
+                $servername = "ofcmikjy9x4lroa2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+                $username = "kef3tins35oiuav6";
+                $password = "xy3mq84j7cahchrv";
+                $dbname = "ur6lm9c4l3ozz0cf";
 
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
