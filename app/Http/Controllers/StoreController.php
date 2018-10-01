@@ -79,7 +79,7 @@ class StoreController extends Controller
             ->where('stores_id', '=', $id)
             ->get();
 
-        $title = Store::find($archivos[0]->stores_id);
+        $title = Store::find($id);
        /* dd($title);*/
         return view('archivo.index', compact('id','archivos','title'));
     }
