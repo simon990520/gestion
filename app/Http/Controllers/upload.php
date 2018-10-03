@@ -1,6 +1,8 @@
 <?php
 
 error_reporting(E_ALL ^ E_NOTICE);
+use \setasign\Fpdi\Fpdi;
+
 
 define('UPLOAD_DIR', __DIR__ . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR);
 

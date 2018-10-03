@@ -32,7 +32,7 @@ function processRequest() {
                     $imgAnchor = '<img src="' . dirname(getCurrentPageURL()) . '/icon-others.png">';
                 }
 
-                print("<p>$filename</p>");
+                /*print("<p>$filename</p>");*/
                 /*$ruta = substr($filename, 0, -4);
                 $id = $_REQUEST['id'];
                 $conn_string = "host=ec2-107-22-192-11.compute-1.amazonaws.co port=5432 dbname=d7mgsl9823aitl user=vddqdpkoyzcfga password=f9bf4e88a47e53e001a9bdefb0c72b33ed4aa5fdedcccd9fb6b321fde69d60d5"; // change the db credentials here
@@ -45,17 +45,25 @@ function processRequest() {
                 $query1 = "INSERT INTO prenotazioni  (ruta, stores_id) VALUES ('$ruta', '$id')";
                 $result = pg_query($conn, $query1 ); */
 
-                $servername = "mna97msstjnkkp7h.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-                $username = "egkeoaz6txgklz8j";
-                $password = "epwfb7d9s66mbjzn";
-                $dbname = "moys8cd09w93wq3h";
+                $servername = "127.0.0.1";
+                $username = "root";
+                $password = "";
+                $dbname = "admin";
 
                 try {
                     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $ruta = substr($filename, 0, -4);
                     $id = $_REQUEST['id'];
-                    $sql = "INSERT INTO archivos (ruta, stores_id)VALUES ($ruta, $id)";
+                    /*$data = mysqli_query("SELECT * FROM archivos ORDER BY consecutivo DESC LIMIT 0,1");*/
+                    $data = $conn->query("SELECT * FROM archivos WHERE 	stores_id = $id ")->fetchAll();
+                    $filas = count($data);
+                    if ($filas <= 0){
+                        $filas = 0;
+                    }
+                    $consecutivo = $filas + 1;
+
+                    $sql = "INSERT INTO archivos (ruta,consecutivo, stores_id)VALUES ($ruta,$consecutivo, $id)";
                     $conn->exec($sql);
 
                 }

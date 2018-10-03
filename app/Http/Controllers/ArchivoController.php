@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use setasign\Fpdi\Fpdi;
+use setasign\Fpdi\PdfParser\StreamReader;
+
+require __DIR__.'/../../../vendor/setasign/fpdf/fpdf.php';
+require __DIR__.'/../../../vendor/setasign/fpdi/src/autoload.php';
 
 class ArchivoController extends Controller
 {
@@ -45,7 +51,33 @@ class ArchivoController extends Controller
      */
     public function show($id)
     {
-        //
+        $archivos = DB::table('archivos')
+            ->join('stores', 'stores.id', '=', 'archivos.stores_id')
+            ->select('archivos.*', 'stores.radicado')->where('archivos.id', '=', $id)
+            ->get();
+
+        /*dd($archivos);*/
+
+        $pdf = new Fpdi();
+
+        /*echo 'tmp/'.$archivos[0]->ruta.'.pdf';*/
+        $pageCount = $pdf->setSourceFile(__DIR__.'/../../../public/tmp/'.$archivos[0]->ruta.'.pdf');
+        for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
+            $templateId = $pdf->importPage($pageNo);
+
+            $pdf->AddPage();
+            $pdf->useTemplate($templateId, ['adjustPageSize' => true]);
+
+            $pdf->SetFont('courier');
+            $pdf->SetXY(5, 2);
+            $pdf->Write(8, $archivos[0]->radicado);
+            $pdf->SetXY(190, 2);
+            $pdf->Write(8, $archivos[0]->consecutivo);
+        }
+
+        $pdf->Output();
+
+
     }
 
     /**
@@ -79,6 +111,30 @@ class ArchivoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $archivos = DB::table('archivos')
+            ->join('stores', 'stores.id', '=', 'archivos.stores_id')
+            ->select('archivos.*', 'stores.radicado')->where('archivos.id', '=', $id)
+            ->get();
+
+        /*dd($archivos);*/
+
+        $pdf = new Fpdi();
+
+        /*echo 'tmp/'.$archivos[0]->ruta.'.pdf';*/
+        $pageCount = $pdf->setSourceFile(__DIR__.'/../../../public/tmp/'.$archivos[0]->ruta.'.pdf');
+        for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
+            $templateId = $pdf->importPage($pageNo);
+
+            $pdf->AddPage();
+            $pdf->useTemplate($templateId, ['adjustPageSize' => true]);
+
+            $pdf->SetFont('courier');
+            $pdf->SetXY(5, 2);
+            $pdf->Write(8, $archivos[0]->radicado);
+            $pdf->SetXY(190, 2);
+            $pdf->Write(8, $archivos[0]->consecutivo);
+        }
+
+        $pdf->Output(__DIR__.'/../../../public/tmp/'.$archivos[0]->ruta.'.pdf', 'D');
     }
 }

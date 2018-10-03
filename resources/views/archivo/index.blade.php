@@ -39,10 +39,10 @@
                             <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
 
                             <div class="mailbox-attachment-info">
-                                <a href="{{asset('tmp/'.$post->ruta)}}.pdf" target="_blank" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{$post->ruta}}.pdf</a>
+                                <a href="{{action('ArchivoController@show', $post->id)}}" name="ver" target="_blank" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{$post->ruta}}.pdf</a>
                                 <span class="mailbox-attachment-size">
                           1,245 KB
-                          <a href="{{asset('tmp/'.$post->ruta)}}.pdf" download="{{$post->ruta}}" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
+                          <a href="{{asset('tmp/'.$post->ruta)}}.pdf" download="{{$post->ruta}}" name="descargar" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
                         </span>
                             </div>
                         </li>

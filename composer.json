@@ -9,12 +9,16 @@
         "barryvdh/laravel-dompdf": "^0.8.2",
         "barryvdh/laravel-snappy": "^0.4.1",
         "caffeinated/shinobi": "^3.2",
+        "codedge/laravel-fpdf": "^1.2",
         "fideloper/proxy": "^4.0",
         "gufy/pdftohtml-php": "~2",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.6",
         "scannerjs/scanner.js": "^2.10",
+        "setasign/fpdf": "1.8.1",
+        "setasign/fpdi": "^2.1",
+        "setasign/fpdi-tcpdf": "^2.0" ,
         "smalot/pdfparser": "*"
     },
     "require-dev": {

@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Knp\Snappy\Pdf;
+use setasign\Fpdi\Fpdi;
 use function Sodium\compare;
+
+/*require_once('vendor/fpdf/fpdf.php');
+require_once('vendor/fpdi/src/autoload.php');*/
+
 
 class StoreController extends Controller
 {
@@ -79,8 +84,19 @@ class StoreController extends Controller
             ->where('stores_id', '=', $id)
             ->get();
 
+        /*$archivos = DB::table('archivos')
+            ->join('stores', 'stores.id', '=', 'archivos.stores_id')
+            ->select('archivos.*', 'stores.radicado')
+            ->get();*/
+
         $title = Store::find($id);
-       /* dd($title);*/
+        /*dd($archivos);*/
+
+        /*$pdf = new Fpdi();
+        foreach ($archivos as $post){
+
+        }*/
+
         return view('archivo.index', compact('id','archivos','title'));
     }
 
